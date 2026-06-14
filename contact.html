@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+
+<!-- Primary SEO -->
+<title>Contact Us - 2048 Cupcakes</title>
+<meta name="description" content="Have questions or feedback about our puzzle game? Reach out directly to CandyMan, the CEO and founder of 2048 Cupcakes.">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Styles -->
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 40px;
+    align-items: start;
+    margin-top: 24px;
+  }
+  .info-card {
+    background: var(--cream-deep);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+  }
+  .info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .info-icon {
+    font-size: 1.5rem;
+    background: var(--white);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-soft);
+    flex-shrink: 0;
+  }
+  .info-text h3 {
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+  }
+  .info-text p, .info-text a {
+    color: var(--brown-soft);
+    margin: 0;
+    font-size: 0.95rem;
+    word-break: break-all;
+  }
+  .info-text a:hover {
+    color: var(--pink-dark);
+  }
+  
+  /* Form Formatting Styles */
+  .form-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    padding: 36px;
+  }
+  .form-group {
+    margin-bottom: 20px;
+  }
+  .form-group label {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--brown);
+  }
+  .form-control {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid var(--cream-deep);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--brown);
+    background: var(--white);
+    transition: border-color 0.15s ease;
+  }
+  .form-control:focus {
+    outline: none;
+    border-color: var(--pink);
+  }
+  textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  @media (max-width: 850px) {
+    .contact-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<main>
+  <section class="contact-section">
+    <div class="section-inner">
+      <p class="eyebrow">Support Hub</p>
+      <h1>Contact Us</h1>
+      <p class="section-lead">Got a high score milestone glitch to share or an exciting gameplay layout idea? Fill out our message panel below or reach out directly via our official inbox channel.</p>
+
+      <div class="contact-layout">
+        
+        <!-- DIRECT INFO BOX PANEL -->
+        <div class="info-card">
+          <h2>Get In Touch</h2>
+          <p style="color: var(--brown-soft); margin-bottom: 32px;">Our customer service team works diligently to evaluate message submissions within a window of 24–48 hours.</p>
+          
+          <div class="info-item">
+            <div class="info-icon">✉️</div>
+            <div class="info-text">
+              <h3>Direct Email</h3>
+              <a href="mailto:anwaralamkhi22@gmail.com">anwaralamkhi22@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">👑</div>
+            <div class="info-text">
+              <h3>Founder & CEO</h3>
+              <p>CandyMan</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">🌐</div>
+            <div class="info-text">
+              <h3>Main Domain</h3>
+              <a href="https://cupcakesgame.github.io/" target="_blank">cupcakesgame.github.io</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTACT INTERACTIVE MESSAGE FORM -->
+        <div class="form-card">
+          <form action="https://formspree.io/f/your-id-here" method="POST">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" class="form-control" placeholder="name@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" class="form-control" placeholder="How can we help you?" required>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" class="form-control" placeholder="Type your sweet feedback or questions here..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="footer-placeholder"></div>
+
+<script src="js/header.js"></script>
+<script src="js/footer.js"></script>
+</body>
+</html>
