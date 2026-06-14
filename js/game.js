@@ -221,7 +221,7 @@
 
       // New game / undo / overlay
       this.newGameBtn.addEventListener('click', () => this.restart());
-      this.overlayBtn.addEventListener('click', () => this.continueGame());
+      this.overlayBtn.addEventListener('click', () => this.handleOverlayClick());
       this.undoBtn.addEventListener('click', () => this.undo());
 
       // Resize - keep tile positions correct on orientation change
@@ -236,6 +236,7 @@
       this.over = false;
       this.won = false;
       this.keepPlaying = false;
+      this.hasShownWin = false; // NEW: Track if we've already shown the win overlay
       this.history = [];
       this.bestScore = Number(localStorage.getItem(this.storageKey)) || 0;
 
@@ -249,9 +250,24 @@
       this.setup();
     }
 
+    handleOverlayClick() {
+      if (this.won && !this.keepPlaying) {
+        // This is the "Keep Playing" click after winning
+        this.keepPlaying = true;
+        this.won = false; // Reset won state so moves work again
+        this.hideOverlay();
+      } else if (this.over) {
+        // This is the "Try Again" click after game over
+        this.restart();
+      } else {
+        // Default fallback
+        this.continueGame();
+      }
+    }
+
     continueGame() {
       this.keepPlaying = true;
-      this.won = false;  // FIX: Reset won state when continuing to play after winning
+      this.won = false;
       this.hideOverlay();
     }
 
@@ -276,7 +292,7 @@
       this.grid.eachCell((x, y, tile) => {
         cells.push(tile ? { x, y, value: tile.value } : null);
       });
-      return { cells, score: this.score };
+      return { cells, score: this.score, won: this.won, over: this.over, keepPlaying: this.keepPlaying };
     }
 
     pushHistory() {
@@ -299,8 +315,9 @@
         }
       });
       this.score = state.score;
-      this.over = false;
-      this.won = false;
+      this.won = state.won || false;
+      this.over = state.over || false;
+      this.keepPlaying = state.keepPlaying || false;
       this.hideOverlay();
       this.actuate();
       this.updateUndoState();
@@ -314,7 +331,9 @@
     /* ---------------- Movement ---------------- */
 
     move(direction) {
-      if (this.over || (this.won && !this.keepPlaying)) return;
+      // FIX: Better condition - don't allow moves if game over, or if won and not continuing
+      if (this.over) return;
+      if (this.won && !this.keepPlaying) return;
 
       const vector = this.getVector(direction);
       const traversals = this.buildTraversals(vector);
@@ -345,9 +364,10 @@
 
               this.score += merged.value;
 
-              // FIX: Only trigger win when exactly reaching 2048, not beyond
-              if (merged.value === 2048 && !this.won) {
+              // FIX: Only trigger win when exactly reaching 2048, and only once
+              if (merged.value === 2048 && !this.won && !this.hasShownWin) {
                 this.won = true;
+                this.hasShownWin = true;
               }
             } else {
               this.moveTile(tile, positions.farthest);
@@ -361,7 +381,7 @@
       });
 
       if (moved) {
-        this.history.push({ cells: previousState.cells, score: previousState.score });
+        this.history.push(previousState);
         if (this.history.length > this.maxHistory) this.history.shift();
         this.updateUndoState();
 
@@ -373,7 +393,9 @@
 
         this.actuate();
 
-        if (this.won && !this.keepPlaying) {
+        // FIX: Only show win overlay once and only when appropriate
+        if (this.won && !this.keepPlaying && !this.hasShownWin) {
+          this.hasShownWin = true;
           this.showOverlay('win');
         } else if (this.over) {
           this.showOverlay('over');
@@ -539,19 +561,18 @@
         this.overlayText.textContent = 'You baked the legendary 2048 Royal Cupcake!';
         this.overlayBtn.textContent = 'Keep Playing';
         this.overlayBtn.hidden = false;
-      } else {
+        this.overlayEl.hidden = false;
+      } else if (type === 'over') {
         this.overlayTitle.textContent = 'Game Over';
         this.overlayText.textContent = 'No more moves left. Try again!';
         this.overlayBtn.textContent = 'Try Again';
         this.overlayBtn.hidden = false;
-        this.overlayBtn.onclick = () => this.restart();
+        this.overlayEl.hidden = false;
       }
-      this.overlayEl.hidden = false;
     }
 
     hideOverlay() {
       this.overlayEl.hidden = true;
-      this.overlayBtn.onclick = () => this.continueGame();
     }
   }
 
