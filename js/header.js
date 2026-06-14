@@ -1,63 +1,53 @@
-/* ==========================================================================
-   2048 CupCakes - Header Component
-   ========================================================================== */
-
+// header.js - 2048 Cupcakes site header component
 (function () {
   const headerHTML = `
     <header class="site-header">
-      <div class="container">
-        <a href="#" class="site-logo">
-          <span class="emoji">🧁</span>
-          <span>2048 CupCakes</span>
+      <div class="site-header-inner">
+        <a class="brand" href="/" aria-label="2048 Cupcakes home">
+          <span class="brand-icon" aria-hidden="true">🧁</span>
+          <span class="brand-name">2048 Cupcakes</span>
         </a>
-        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">☰</button>
+
         <nav class="site-nav" id="site-nav">
-          <a href="#game">Play</a>
-          <a href="#" class="nav-how">How to Play</a>
-          <a href="#" class="nav-about">About</a>
-          <a href="#" class="nav-faq">FAQ</a>
+          <a href="/#game">Play</a>
+          <a href="/#how-to-play">How To Play</a>
+          <a href="/#about">About</a>
+          <a href="/#features">Features</a>
+          <a href="/#flavor-guide">Tile Guide</a>
+          <a href="/#tips">Tips</a>
+          <a href="/#faq">FAQ</a>
         </nav>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </header>
   `;
 
-  const headerContainer = document.getElementById('site-header');
-  if (headerContainer) {
-    headerContainer.innerHTML = headerHTML;
+  const placeholder = document.getElementById('header-placeholder');
+  if (placeholder) {
+    placeholder.outerHTML = headerHTML;
   }
 
-  // Mobile nav toggle
   const toggle = document.getElementById('nav-toggle');
   const nav = document.getElementById('site-nav');
 
   if (toggle && nav) {
-    toggle.addEventListener('click', function () {
-      nav.classList.toggle('open');
+    toggle.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('open');
+      toggle.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    nav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
     });
   }
-
-  // Smooth-scroll helper links to specific sections by heading text
-  function scrollToSectionByHeading(keyword) {
-    const headings = document.querySelectorAll('main h2');
-    for (const heading of headings) {
-      if (heading.textContent.toLowerCase().includes(keyword.toLowerCase())) {
-        heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        if (nav) nav.classList.remove('open');
-        return;
-      }
-    }
-  }
-
-  document.addEventListener('click', function (e) {
-    if (e.target.classList.contains('nav-how')) {
-      e.preventDefault();
-      scrollToSectionByHeading('How to Play');
-    } else if (e.target.classList.contains('nav-about')) {
-      e.preventDefault();
-      scrollToSectionByHeading('About 2048');
-    } else if (e.target.classList.contains('nav-faq')) {
-      e.preventDefault();
-      scrollToSectionByHeading('Frequently Asked');
-    }
-  });
 })();
