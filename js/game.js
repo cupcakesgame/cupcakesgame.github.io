@@ -251,6 +251,7 @@
 
     continueGame() {
       this.keepPlaying = true;
+      this.won = false;  // FIX: Reset won state when continuing to play after winning
       this.hideOverlay();
     }
 
@@ -344,7 +345,8 @@
 
               this.score += merged.value;
 
-              if (merged.value >= 2048 && !this.won) {
+              // FIX: Only trigger win when exactly reaching 2048, not beyond
+              if (merged.value === 2048 && !this.won) {
                 this.won = true;
               }
             } else {
