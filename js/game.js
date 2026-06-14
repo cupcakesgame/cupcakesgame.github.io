@@ -8,17 +8,17 @@
      exact file names, or update the paths below.
      ========================================================= */
   const CUPCAKE_IMAGES = {
-    2: 'images/cupcake-2.png',
-    4: 'images/cupcake-4.png',
-    8: 'images/cupcake-8.png',
-    16: 'images/cupcake-16.png',
-    32: 'images/cupcake-32.png',
-    64: 'images/cupcake-64.png',
-    128: 'images/cupcake-128.png',
-    256: 'images/cupcake-256.png',
-    512: 'images/cupcake-512.png',
-    1024: 'images/cupcake-1024.png',
-    2048: 'images/cupcake-2048.png'
+    2: 'img/2.jpg',
+    4: 'img/4.jpg',
+    8: 'img/8.jpg',
+    16: 'img/16.jpg',
+    32: 'img/32.jpg',
+    64: 'img/64.jpg',
+    128: 'img/128.jpg',
+    256: 'img/256.jpg',
+    512: 'img/512.jpg',
+    1024: 'img/1024.jpg',
+    2048: 'img/2048.jpg'
   };
   const SUPER_CUPCAKE_IMAGE = 'images/cupcake-super.png';
 
