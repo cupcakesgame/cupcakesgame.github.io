@@ -21,9 +21,11 @@
 
         <div class="footer-links">
           <h4>Info</h4>
-          <a href="#about">About 2048 Cupcakes</a>
-          <a href="#features">Features</a>
-          <a href="#faq">FAQ</a>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms of Use</a>
+          <a href="/cookies">Cookies Policy</a>
         </div>
       </div>
 
