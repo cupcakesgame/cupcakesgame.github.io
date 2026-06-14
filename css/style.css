@@ -963,3 +963,7 @@ img {
     grid-template-columns: 1fr;
   }
 }
+/* Add this rule to the bottom of style.css to enforce the hidden attribute */
+[hidden] {
+  display: none !important;
+}
