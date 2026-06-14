@@ -1,67 +1,41 @@
-/* ==========================================================================
-   2048 CupCakes - Footer Component
-   ========================================================================== */
-
+// footer.js - 2048 Cupcakes site footer component
 (function () {
   const year = new Date().getFullYear();
 
   const footerHTML = `
     <footer class="site-footer">
-      <div class="container">
-        <div class="footer-inner">
-          <div class="footer-col">
-            <h3>🧁 2048 CupCakes</h3>
-            <p style="max-width:280px; font-size:0.9rem; color:#fdeee2;">
-              A sweet, free, browser-based twist on the classic 2048 sliding tile puzzle game. Merge cupcakes, beat your best score, and have fun.
-            </p>
-          </div>
-          <div class="footer-col">
-            <h3>Game</h3>
-            <a href="#game">Play 2048 CupCakes</a>
-            <a href="#" class="footer-how">How to Play</a>
-            <a href="#" class="footer-tips">Tips &amp; Strategies</a>
-          </div>
-          <div class="footer-col">
-            <h3>Info</h3>
-            <a href="#" class="footer-about">About</a>
-            <a href="#" class="footer-faq">FAQ</a>
-          </div>
+      <div class="site-footer-inner">
+        <div class="footer-brand">
+          <span class="brand-icon" aria-hidden="true">🧁</span>
+          <span class="brand-name">2048 Cupcakes</span>
+          <p>A sweet, free twist on the classic 2048 sliding tile puzzle game. Merge cupcakes, beat your best score, and bake your way to the 2048 Royal Cupcake.</p>
         </div>
-        <div class="footer-bottom">
-          <p>&copy; ${year} 2048 CupCakes. All rights reserved.</p>
+
+        <div class="footer-links">
+          <h4>Game</h4>
+          <a href="/#game">Play 2048 Cupcakes</a>
+          <a href="/#how-to-play">How To Play</a>
+          <a href="/#flavor-guide">Cupcake Tile Guide</a>
+          <a href="/#tips">Tips &amp; Strategies</a>
         </div>
+
+        <div class="footer-links">
+          <h4>Info</h4>
+          <a href="#about">About 2048 Cupcakes</a>
+          <a href="#features">Features</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; ${year} 2048 Cupcakes. All rights reserved.</p>
+        <p>2048 Cupcakes is an independent fan-made puzzle game and is not affiliated with any official 2048 brand.</p>
       </div>
     </footer>
   `;
 
-  const footerContainer = document.getElementById('site-footer');
-  if (footerContainer) {
-    footerContainer.innerHTML = footerHTML;
+  const placeholder = document.getElementById('footer-placeholder');
+  if (placeholder) {
+    placeholder.outerHTML = footerHTML;
   }
-
-  function scrollToSectionByHeading(keyword) {
-    const headings = document.querySelectorAll('main h2');
-    for (const heading of headings) {
-      if (heading.textContent.toLowerCase().includes(keyword.toLowerCase())) {
-        heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        return;
-      }
-    }
-  }
-
-  document.addEventListener('click', function (e) {
-    if (e.target.classList.contains('footer-how')) {
-      e.preventDefault();
-      scrollToSectionByHeading('How to Play');
-    } else if (e.target.classList.contains('footer-about')) {
-      e.preventDefault();
-      scrollToSectionByHeading('About 2048');
-    } else if (e.target.classList.contains('footer-faq')) {
-      e.preventDefault();
-      scrollToSectionByHeading('Frequently Asked');
-    } else if (e.target.classList.contains('footer-tips')) {
-      e.preventDefault();
-      scrollToSectionByHeading('Tips and Strategies');
-    }
-  });
 })();
