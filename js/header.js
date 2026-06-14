@@ -1,63 +1,63 @@
-/* header.js — injects sticky header with mobile nav */
-(function () {
-  const html = `
-<header id="site-header">
-  <div class="container">
-    <div class="header-inner">
-      <a href="/" class="logo" aria-label="2048 CupCakes Home">
-        <span class="logo-icon">🧁</span>
-        <span>2048 <span>CupCakes</span></span>
-      </a>
-      <nav class="main-nav" aria-label="Main navigation">
-        <a href="#game">Play Now</a>
-        <a href="#how-to-play">How to Play</a>
-        <a href="#tiles">Cupcake Tiles</a>
-        <a href="#tips">Tips</a>
-        <a href="#faq">FAQ</a>
-      </nav>
-      <a href="#game" class="btn btn-primary nav-cta">🎮 Play Free</a>
-      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" id="hamburger-btn">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
-  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
-    <a href="#game">🎮 Play Now</a>
-    <a href="#how-to-play">📖 How to Play</a>
-    <a href="#tiles">🧁 Cupcake Tiles</a>
-    <a href="#tips">💡 Tips & Tricks</a>
-    <a href="#faq">❓ FAQ</a>
-  </nav>
-</header>`;
+/* ==========================================================================
+   2048 CupCakes - Header Component
+   ========================================================================== */
 
-  const placeholder = document.getElementById('header-placeholder');
-  if (placeholder) {
-    placeholder.outerHTML = html;
-  } else {
-    document.body.insertAdjacentHTML('afterbegin', html);
+(function () {
+  const headerHTML = `
+    <header class="site-header">
+      <div class="container">
+        <a href="#" class="site-logo">
+          <span class="emoji">🧁</span>
+          <span>2048 CupCakes</span>
+        </a>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">☰</button>
+        <nav class="site-nav" id="site-nav">
+          <a href="#game">Play</a>
+          <a href="#" class="nav-how">How to Play</a>
+          <a href="#" class="nav-about">About</a>
+          <a href="#" class="nav-faq">FAQ</a>
+        </nav>
+      </div>
+    </header>
+  `;
+
+  const headerContainer = document.getElementById('site-header');
+  if (headerContainer) {
+    headerContainer.innerHTML = headerHTML;
   }
 
-  /* Scroll shadow */
-  const header = document.getElementById('site-header');
-  window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 20);
-  }, { passive: true });
+  // Mobile nav toggle
+  const toggle = document.getElementById('nav-toggle');
+  const nav = document.getElementById('site-nav');
 
-  /* Hamburger toggle */
-  const btn = document.getElementById('hamburger-btn');
-  const mobileNav = document.getElementById('mobile-nav');
-  btn.addEventListener('click', () => {
-    const open = btn.classList.toggle('open');
-    mobileNav.classList.toggle('open', open);
-    btn.setAttribute('aria-expanded', open);
-  });
-
-  /* Close mobile nav on link click */
-  mobileNav.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      btn.classList.remove('open');
-      mobileNav.classList.remove('open');
-      btn.setAttribute('aria-expanded', 'false');
+  if (toggle && nav) {
+    toggle.addEventListener('click', function () {
+      nav.classList.toggle('open');
     });
+  }
+
+  // Smooth-scroll helper links to specific sections by heading text
+  function scrollToSectionByHeading(keyword) {
+    const headings = document.querySelectorAll('main h2');
+    for (const heading of headings) {
+      if (heading.textContent.toLowerCase().includes(keyword.toLowerCase())) {
+        heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (nav) nav.classList.remove('open');
+        return;
+      }
+    }
+  }
+
+  document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('nav-how')) {
+      e.preventDefault();
+      scrollToSectionByHeading('How to Play');
+    } else if (e.target.classList.contains('nav-about')) {
+      e.preventDefault();
+      scrollToSectionByHeading('About 2048');
+    } else if (e.target.classList.contains('nav-faq')) {
+      e.preventDefault();
+      scrollToSectionByHeading('Frequently Asked');
+    }
   });
 })();

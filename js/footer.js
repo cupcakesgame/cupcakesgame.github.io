@@ -1,58 +1,67 @@
-/* footer.js — injects site footer */
+/* ==========================================================================
+   2048 CupCakes - Footer Component
+   ========================================================================== */
+
 (function () {
   const year = new Date().getFullYear();
-  const html = `
-<footer id="site-footer" aria-label="Site footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="/" class="logo" aria-label="2048 CupCakes Home">
-          <span class="logo-icon" aria-hidden="true">🧁</span>
-          <span>2048 <span>CupCakes</span></span>
-        </a>
-        <p>Merge sweet cupcake tiles and bake your way to the legendary 2048 CupCakes tile. Free to play, no download required.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Play</h4>
-        <ul>
-          <li><a href="#game">Start Game</a></li>
-          <li><a href="#how-to-play">How to Play</a></li>
-          <li><a href="#tiles">Cupcake Tiles</a></li>
-          <li><a href="#tips">Strategies</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Learn</h4>
-        <ul>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#about">About the Game</a></li>
-          <li><a href="#features">Game Features</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="/privacy.html">Privacy Policy</a></li>
-          <li><a href="/terms.html">Terms of Use</a></li>
-          <li><a href="/contact.html">Contact Us</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; ${year} <a href="/">2048 CupCakes</a>. All rights reserved. Made with 🧁 for puzzle lovers.</p>
-      <div class="footer-links-bottom">
-        <a href="/privacy.html">Privacy</a>
-        <a href="/terms.html">Terms</a>
-        <a href="/contact.html">Contact</a>
-      </div>
-    </div>
-  </div>
-</footer>`;
 
-  const placeholder = document.getElementById('footer-placeholder');
-  if (placeholder) {
-    placeholder.outerHTML = html;
-  } else {
-    document.body.insertAdjacentHTML('beforeend', html);
+  const footerHTML = `
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-col">
+            <h3>🧁 2048 CupCakes</h3>
+            <p style="max-width:280px; font-size:0.9rem; color:#fdeee2;">
+              A sweet, free, browser-based twist on the classic 2048 sliding tile puzzle game. Merge cupcakes, beat your best score, and have fun.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h3>Game</h3>
+            <a href="#game">Play 2048 CupCakes</a>
+            <a href="#" class="footer-how">How to Play</a>
+            <a href="#" class="footer-tips">Tips &amp; Strategies</a>
+          </div>
+          <div class="footer-col">
+            <h3>Info</h3>
+            <a href="#" class="footer-about">About</a>
+            <a href="#" class="footer-faq">FAQ</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; ${year} 2048 CupCakes. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  `;
+
+  const footerContainer = document.getElementById('site-footer');
+  if (footerContainer) {
+    footerContainer.innerHTML = footerHTML;
   }
+
+  function scrollToSectionByHeading(keyword) {
+    const headings = document.querySelectorAll('main h2');
+    for (const heading of headings) {
+      if (heading.textContent.toLowerCase().includes(keyword.toLowerCase())) {
+        heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+    }
+  }
+
+  document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('footer-how')) {
+      e.preventDefault();
+      scrollToSectionByHeading('How to Play');
+    } else if (e.target.classList.contains('footer-about')) {
+      e.preventDefault();
+      scrollToSectionByHeading('About 2048');
+    } else if (e.target.classList.contains('footer-faq')) {
+      e.preventDefault();
+      scrollToSectionByHeading('Frequently Asked');
+    } else if (e.target.classList.contains('footer-tips')) {
+      e.preventDefault();
+      scrollToSectionByHeading('Tips and Strategies');
+    }
+  });
 })();
