@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- Primary SEO -->
+  <title>2048 CupCakes Game – Play Free Online | CupCakes 2048</title>
+  <meta name="description" content="Play 2048 CupCakes online for free! Merge sweet cupcake tiles to reach the delicious 2048 tile. Enjoy this fun browser puzzle game with a beautiful cupcake theme. No download needed." />
+  <meta name="keywords" content="2048 cupcakes, 2048 cupcakes game, cupcakes 2048, 2048 game cupcakes, play 2048 cupcakes online, cupcake puzzle game, 2048 online, merge cupcakes game" />
+  <meta name="author" content="CupCakes 2048" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://cupcakesgame.github.io/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://cupcakesgame.github.io/" />
+  <meta property="og:title"       content="2048 CupCakes Game – Play Free Online" />
+  <meta property="og:description" content="Merge sweet cupcake tiles and reach 2048 in this irresistibly fun browser puzzle game. No download required!" />
+  <meta property="og:image"       content="https://cupcakesgame.github.io/og-image.png" />
+  <meta property="og:site_name"   content="2048 CupCakes" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="2048 CupCakes Game – Play Free Online" />
+  <meta name="twitter:description" content="Merge cupcake tiles to reach 2048! Free browser puzzle game, no download needed." />
+  <meta name="twitter:image"       content="https://cupcakesgame.github.io/og-image.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧁</text></svg>" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- ═══════════════════════════════════════════════
+       SCHEMA MARKUP
+  ════════════════════════════════════════════════ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://cupcakesgame.github.io/#website",
+        "url": "https://cupcakesgame.github.io/",
+        "name": "2048 CupCakes",
+        "description": "Play 2048 CupCakes online for free. Merge sweet cupcake tiles to reach the legendary 2048 tile.",
+        "inLanguage": "en-US",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://cupcakesgame.github.io/?s={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://cupcakesgame.github.io/#game",
+        "name": "2048 CupCakes Game",
+        "url": "https://cupcakesgame.github.io/",
+        "description": "A free browser-based puzzle game where you merge cupcake tiles on a 4×4 grid to reach the delicious 2048 CupCake tile.",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript. Works in all modern browsers.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "author": {
+          "@type": "Organization",
+          "name": "2048 CupCakes",
+          "url": "https://cupcakesgame.github.io/"
+        },
+        "genre": "Puzzle",
+        "keywords": "2048, cupcakes, puzzle game, merge tiles, browser game",
+        "featureList": ["No download required", "Mobile compatible", "Free to play", "Keyboard and swipe controls", "Score tracking"],
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://cupcakesgame.github.io/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is 2048 CupCakes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "2048 CupCakes is a fun, free browser puzzle game where you slide and merge cupcake tiles on a 4×4 grid. Matching two tiles of the same cupcake combines them into a sweeter, higher-value cupcake. The goal is to reach the legendary 2048 CupCake tile!"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do you play 2048 CupCakes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Use arrow keys on desktop or swipe on mobile to slide all cupcake tiles in a direction. When two tiles with the same cupcake meet, they merge into one higher-value tile. Keep merging to score higher and eventually reach the 2048 tile!"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is 2048 CupCakes free to play?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! 2048 CupCakes is completely free to play directly in your browser with no download, no sign-up, and no payment required."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I play 2048 CupCakes on my phone?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutely! 2048 CupCakes is fully mobile-compatible. You can swipe on your touchscreen to move the tiles, making it easy and fun to play on any smartphone or tablet."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens after you reach the 2048 CupCake tile?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Reaching the 2048 tile is a major milestone, but the game can continue! You can keep merging tiles to reach even higher cupcakes like 4096 and beyond, pushing your score to new heights."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the best strategy for 2048 CupCakes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The most popular strategy is to keep your highest-value tile in a corner and build a chain of decreasing tiles alongside it. Avoid moving in the direction of your corner tile unless necessary, and always try to keep the board organized to avoid getting stuck."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://cupcakesgame.github.io/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ═══════════════ HEADER ═══════════════ -->
+  <div id="header-placeholder"></div>
+
+  <main id="main-content">
+
+    <!-- ════════════════════════════════════════
+         SECTION 1 · HERO
+    ═════════════════════════════════════════ -->
+    <section class="hero" aria-label="Hero">
+      <div class="hero-bg-blobs" aria-hidden="true">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+      </div>
+      <div class="container">
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <div class="hero-badge">
+              <span class="dot"></span>
+              Free Online Puzzle Game
+            </div>
+            <h1>The Sweetest<br><em>2048 CupCakes</em><br>Game Online</h1>
+            <p class="hero-desc">Slide, merge, and bake your way to the legendary 2048 CupCake tile. A deliciously addictive puzzle game you can play free in your browser — no download needed.</p>
+            <div class="hero-actions">
+              <a href="#game" class="btn btn-primary">🎮 Play Now — It's Free</a>
+              <a href="#how-to-play" class="btn btn-outline">📖 How to Play</a>
+            </div>
+            <div class="hero-stats">
+              <div class="stat-item">
+                <span class="stat-num">4×4</span>
+                <span class="stat-lbl">Game Grid</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-num">2048</span>
+                <span class="stat-lbl">Target Tile</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-num">11</span>
+                <span class="stat-lbl">Cupcake Tiers</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-hidden="true">
+            <div class="cupcake-showcase">
+              <div class="cupcake-grid-preview">
+                <div class="tile-preview t2">🧁</div>
+                <div class="tile-preview t4">🧁</div>
+                <div class="tile-preview t8">🧁</div>
+                <div class="tile-preview t16">🧁</div>
+                <div class="tile-preview t32">🧁</div>
+                <div class="tile-preview t64">🧁</div>
+                <div class="tile-preview t128">🧁</div>
+                <div class="tile-preview t256">🧁</div>
+                <div class="tile-preview t512">🧁</div>
+                <div class="tile-preview t1024">🧁</div>
+                <div class="tile-preview t2048">🧁</div>
+                <div class="tile-preview empty"></div>
+                <div class="tile-preview t4">🧁</div>
+                <div class="tile-preview empty"></div>
+                <div class="tile-preview t2">🧁</div>
+                <div class="tile-preview t8">🧁</div>
+              </div>
+              <div class="float-cupcake fc-1" aria-hidden="true">🧁</div>
+              <div class="float-cupcake fc-2" aria-hidden="true">🍰</div>
+              <div class="float-cupcake fc-3" aria-hidden="true">🍭</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════
+         SECTION 2 · THE GAME
+    ═════════════════════════════════════════ -->
+    <section class="game-section" id="game" aria-label="Play 2048 CupCakes">
+      <div class="container">
+        <div class="game-section-header">
+          <span class="section-label">Play Free</span>
+          <h2>2048 CupCakes Game</h2>
+          <p>Use arrow keys (desktop) or swipe (mobile) to merge matching cupcakes. Reach the <strong>2048 CupCake</strong> to win!</p>
+        </div>
+
+        <!-- ↓↓↓  DROP YOUR GAME HERE  ↓↓↓ -->
+        <div class="game-wrapper" id="game-embed">
+          <div class="game-placeholder">
+            <div class="game-placeholder-icon">🧁</div>
+            <p>Your 2048 CupCakes game loads here</p>
+            <small>Replace this div with your game embed or iframe</small>
+          </div>
+        </div>
+        <!-- ↑↑↑  END GAME EMBED  ↑↑↑ -->
+
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════
+         SECTION 3 · HOW TO PLAY
+    ═════════════════════════════════════════ -->
+    <section class="how-to-play" id="how-to-play" aria-label="How to Play 2048 CupCakes">
+      <div class="container">
+        <div class="section-intro" data-anim>
+          <span class="section-label">Getting Started</span>
+          <h2>How to Play 2048 CupCakes</h2>
+          <p>Learning 2048 CupCakes takes seconds — mastering it takes much longer. Here's everything you need to know to start baking tiles like a pro.</p>
+        </div>
+        <div class="steps-grid">
+          <div class="step-card" data-anim data-anim-delay="1">
+            <div class="step-icon">⬆️</div>
+            <h3>Swipe or Press Arrow Keys</h3>
+            <p>On desktop, use your keyboard arrow keys. On mobile, simply swipe up, down, left, or right. All tiles slide simultaneously in the chosen direction.</p>
+          </div>
+          <div class="step-card" data-anim data-anim-delay="2">
+            <div class="step-icon">🧁</div>
+            <h3>Match Matching Cupcakes</h3>
+            <p>When two cupcake tiles of the same type collide while sliding, they merge into a new, sweeter cupcake worth double the points.</p>
+          </div>
+          <div class="step-card" data-anim data-anim-delay="3">
+            <div class="step-icon">🆕</div>
+            <h3>New Tiles Appear</h3>
+            <p>After every move, a new small cupcake tile (value 2 or 4) appears in a random empty spot on the board. Keep the board tidy!</p>
+          </div>
+          <div class="step-card" data-anim data-anim-delay="4">
+            <div class="step-icon">🏆</div>
+            <h3>Reach 2048 to Win</h3>
+            <p>Keep merging until you create the legendary 2048 CupCake tile. Then keep going — the fun doesn't stop at 2048!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════
+         SECTION 4 · CUPCAKE TILES
+    ═════════════════════════════════════════ -->
+    <section class="tiles-section" id="tiles" aria-label="Cupcake Tiles Guide">
+      <div class="container">
+        <div class="section-intro" data-anim>
+          <span class="section-label">Tile Guide</span>
+          <h2>Every CupCake Tile Explained</h2>
+          <p>From a humble plain cupcake all the way to the legendary 2048 masterpiece — here's every cupcake tier you'll encounter in the 2048 CupCakes game.</p>
+        </div>
+        <div class="tiles-grid" role="list">
+          <div class="tile-card tc-2" role="listitem" data-anim data-anim-delay="1">
+            <span class="tile-emoji">🧁</span>
+            <div class="tile-value">2</div>
+            <div class="tile-name">Plain Cupcake</div>
+          </div>
+          <div class="tile-card tc-4" role="listitem" data-anim data-anim-delay="2">
+            <span class="tile-emoji">🧁</span>
+            <div class="tile-value">4</div>
+            <div class="tile-name">Pink Frosted</div>
+          </div>
+          <div class="tile-card tc-8" role="listitem" data-anim data-anim-delay="3">
+            <span class="tile-emoji">🧁</span>
+            <div class="tile-value">8</div>
+            <div class="tile-name">Strawberry Swirl</div>
+          </div>
+          <div class="tile-card tc-16" role="listitem" data-anim data-anim-delay="4">
+            <span class="tile-emoji">🧁</span>
+            <div class="tile-value">16</div>
+            <div class="tile-name">Blush Rose</div>
+          </div>
+          <div class="tile-card tc-32" role="listitem" data-anim data-anim-delay="1">
+            <span class="tile-emoji">🧁</span>
+            <div class="tile-value">32</div>
+            <div class="tile-name">Caramel Drizzle</div>
+          </div>
+          <div class="tile-card tc-64" role="listitem" data-anim data-anim-delay="2">
+            <span class="tile-emoji">🧁</span>
+            <div class="tile-value">64</div>
+            <div class="tile-name">Toffee Crunch</div>
+          </div>
+          <div class="tile-card tc-128" role="listitem" data-anim data-anim-delay="3">
+            <span class="tile-emoji">🧁</span>
+            <div class="tile-value">128</div>
+            <div class="tile-name">Mint Delight</div>
+          </div>
+          <div class="tile-card tc-256" role="listitem" data-anim data-anim-delay="4">
+            <span class="tile-emoji">🧁</span>
+            <div class="tile-value">256</div>
+            <div class="tile-name">Emerald Cream</div>
+          </div>
+          <div class="tile-card tc-512" role="listitem" data-anim data-anim-delay="1">
+            <span class="tile-emoji">🧁</span>
+            <div class="tile-value">512</div>
+            <div class="tile-name">Lavender Dream</div>
+          </div>
+          <div class="tile-card tc-1024" role="listitem" data-anim data-anim-delay="2">
+            <span class="tile-emoji">🧁</span>
+            <div class="tile-value">1024</div>
+            <div class="tile-name">Velvet Royale</div>
+          </div>
+          <div class="tile-card tc-2048" role="listitem" data-anim data-anim-delay="3">
+            <span class="tile-emoji">🧁</span>
+            <div class="tile-value">2048</div>
+            <div class="tile-name">The Legend ✨</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════
+         SECTION 5 · FEATURES
+    ═════════════════════════════════════════ -->
+    <section class="features-section" id="features" aria-label="Game Features">
+      <div class="container">
+        <div class="section-intro" data-anim>
+          <span class="section-label">Why You'll Love It</span>
+          <h2>What Makes 2048 CupCakes Special</h2>
+          <p>We took the classic 2048 number puzzle and wrapped it in the most irresistible cupcake theme on the internet. Here's what sets this game apart.</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card" data-anim data-anim-delay="1">
+            <div class="feature-icon fi-pink">🎮</div>
+            <div>
+              <h3>Instant Browser Play</h3>
+              <p>No app store, no download, no login. Open your browser, head to the game, and start merging cupcakes in seconds.</p>
+            </div>
+          </div>
+          <div class="feature-card" data-anim data-anim-delay="2">
+            <div class="feature-icon fi-caramel">📱</div>
+            <div>
+              <h3>Mobile-First Design</h3>
+              <p>Swipe smoothly on any touchscreen device. The game is fully responsive across all phone and tablet screen sizes.</p>
+            </div>
+          </div>
+          <div class="feature-card" data-anim data-anim-delay="3">
+            <div class="feature-icon fi-mint">⌨️</div>
+            <div>
+              <h3>Keyboard Controls</h3>
+              <p>Desktop players can use arrow keys for precise, rapid tile movements — perfect for chasing high scores.</p>
+            </div>
+          </div>
+          <div class="feature-card" data-anim data-anim-delay="4">
+            <div class="feature-icon fi-lav">📊</div>
+            <div>
+              <h3>Score Tracking</h3>
+              <p>Watch your score climb with every merge. The game keeps track of your current score and your all-time best.</p>
+            </div>
+          </div>
+          <div class="feature-card" data-anim data-anim-delay="1">
+            <div class="feature-icon fi-choco">🔁</div>
+            <div>
+              <h3>New Game & Continue</h3>
+              <p>Reached the 2048 tile? Keep going for an even higher score! Or start fresh with a new game any time.</p>
+            </div>
+          </div>
+          <div class="feature-card" data-anim data-anim-delay="2">
+            <div class="feature-icon fi-blue">🌐</div>
+            <div>
+              <h3>Works Everywhere</h3>
+              <p>Chrome, Safari, Firefox, Edge — any modern browser on any device runs 2048 CupCakes without a hiccup.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════
+         SECTION 6 · TIPS & STRATEGIES
+    ═════════════════════════════════════════ -->
+    <section class="tips-section" id="tips" aria-label="Tips and Strategies">
+      <div class="container">
+        <div class="section-intro" data-anim>
+          <span class="section-label">Expert Advice</span>
+          <h2>Tips & Strategies to Reach 2048 CupCakes</h2>
+          <p>Struggling to reach the 2048 CupCake? These proven strategies will help you think smarter and merge sweeter.</p>
+        </div>
+        <div class="tips-grid">
+          <div class="tip-card" data-anim data-anim-delay="1">
+            <div class="tip-number">01</div>
+            <h3>Pick a Corner and Guard It</h3>
+            <p>Choose one corner — top-left or bottom-right works great — and keep your highest-value cupcake tile there at all times. All your other moves should work to protect and build around that corner tile.</p>
+          </div>
+          <div class="tip-card" data-anim data-anim-delay="2">
+            <div class="tip-number">02</div>
+            <h3>Build a Snake Pattern</h3>
+            <p>Arrange your tiles in a descending snake-like chain from your high-value corner. For example: 2048 → 1024 → 512 → 256 along one row, then 128 → 64 → 32 → 16 along the next. This keeps high-value tiles close for merging.</p>
+          </div>
+          <div class="tip-card" data-anim data-anim-delay="3">
+            <div class="tip-number">03</div>
+            <h3>Avoid Moving Against Your Corner</h3>
+            <p>Never slide tiles in the direction that would move your highest-value cupcake away from your chosen corner. This is the most common mistake beginners make and the fastest way to lose board control.</p>
+          </div>
+          <div class="tip-card" data-anim data-anim-delay="4">
+            <div class="tip-number">04</div>
+            <h3>Keep the Board from Filling Up</h3>
+            <p>A crowded board limits your options fast. Prioritise moves that merge tiles and create empty spaces. The more empty cells you maintain, the more flexibility you have for future moves.</p>
+          </div>
+          <div class="tip-card" data-anim data-anim-delay="1">
+            <div class="tip-number">05</div>
+            <h3>Think Two Moves Ahead</h3>
+            <p>Before every swipe, visualise what the board will look like after the move — and after the next one. 2048 CupCakes rewards patient, deliberate play over rapid random swiping.</p>
+          </div>
+          <div class="tip-card" data-anim data-anim-delay="2">
+            <div class="tip-number">06</div>
+            <h3>Don't Chase Merges Blindly</h3>
+            <p>It's tempting to merge every matching pair immediately. Sometimes it's better to delay a merge and wait for a position where merging will open up even better opportunities further down the board.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════
+         SECTION 7 · ABOUT
+    ═════════════════════════════════════════ -->
+    <section class="about-section" id="about" aria-label="About 2048 CupCakes">
+      <div class="container">
+        <div class="about-inner">
+          <div class="about-visual" aria-hidden="true">
+            <div class="about-emoji-card">
+              🧁
+              <span class="label">Plain</span>
+            </div>
+            <div class="about-emoji-card">
+              🍰
+              <span class="label">Sweet</span>
+            </div>
+            <div class="about-emoji-card">
+              🍭
+              <span class="label">Fun</span>
+            </div>
+            <div class="about-emoji-card">
+              🏆
+              <span class="label">Victory</span>
+            </div>
+          </div>
+          <div class="about-copy" data-anim>
+            <span class="section-label">The Story</span>
+            <h2>About 2048 CupCakes Game</h2>
+            <p>2048 CupCakes puts a delightfully sweet spin on the beloved 2048 number-sliding puzzle. Instead of plain numbers on a beige grid, you get a vibrant bakery board filled with adorable cupcake tiles in 11 delicious tiers — from a humble plain cupcake all the way up to the legendary 2048 masterpiece.</p>
+            <p>The core gameplay stays true to the original formula invented by Gabriele Cirulli in 2014: slide all tiles in one direction, merge matching pairs, and try to create higher and higher tiles before the grid fills up. But with the cupcake theme, every merge feels like a little baking victory — sweeter than ever.</p>
+            <p>Whether you're a seasoned 2048 veteran or a first-time puzzle player, 2048 CupCakes delivers the same satisfying "just one more move" pull that has made the original game a worldwide phenomenon — wrapped in the most charming bakery aesthetic on the web.</p>
+            <a href="#game" class="btn btn-primary" style="margin-top:1.5rem;">🧁 Start Playing Now</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════
+         SECTION 8 · FAQ
+    ═════════════════════════════════════════ -->
+    <section class="faq-section" id="faq" aria-label="Frequently Asked Questions">
+      <div class="container">
+        <div class="section-intro" data-anim>
+          <span class="section-label">FAQ</span>
+          <h2>Frequently Asked Questions</h2>
+          <p>Everything you need to know about the 2048 CupCakes game, from basic rules to advanced tips.</p>
+        </div>
+        <div class="faq-list" role="list">
+
+          <div class="faq-item" role="listitem">
+            <div class="faq-question" role="button" aria-expanded="false" tabindex="0">
+              What is 2048 CupCakes?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                2048 CupCakes is a free, browser-based puzzle game where you slide and merge cupcake tiles on a 4×4 grid. Two matching cupcake tiles combine into a new, sweeter cupcake with double the value. The goal is to keep merging until you create the legendary 2048 CupCake tile — all without letting the board fill up completely.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <div class="faq-question" role="button" aria-expanded="false" tabindex="0">
+              How do you play 2048 CupCakes?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Use the arrow keys on your keyboard (desktop) or swipe on your touchscreen (mobile) to slide all tiles in one direction. When two cupcake tiles of the same type collide, they merge into a higher-tier cupcake. After every move, a new tile appears in a random empty cell. Keep merging strategically to reach 2048!
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <div class="faq-question" role="button" aria-expanded="false" tabindex="0">
+              Is 2048 CupCakes free to play?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Yes, completely free! 2048 CupCakes is available to play right here in your browser at no cost. There's no app to download, no account to create, and no payment required. Just open the page and start playing.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <div class="faq-question" role="button" aria-expanded="false" tabindex="0">
+              Can I play 2048 CupCakes on my phone or tablet?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Absolutely! The game is fully mobile-compatible and touch-optimised. Simply swipe up, down, left, or right on your phone or tablet screen to move the cupcake tiles. It works smoothly on iOS and Android devices in any modern mobile browser.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <div class="faq-question" role="button" aria-expanded="false" tabindex="0">
+              What happens when you reach the 2048 CupCake tile?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Reaching the 2048 tile is a huge accomplishment and the primary goal of the game! But the fun doesn't have to end there — you can choose to keep playing and push for even higher tiles like 4096 and beyond. Your score continues to climb with every additional merge you make.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <div class="faq-question" role="button" aria-expanded="false" tabindex="0">
+              What is the best strategy for 2048 CupCakes?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                The most effective strategy is the "corner method" — keep your highest tile locked in one corner and build a descending chain of tiles toward it. Avoid moves that would dislodge your highest tile from the corner, and always think at least two moves ahead before swiping. Check out our full Tips & Strategies section above for more expert advice!
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <div class="faq-question" role="button" aria-expanded="false" tabindex="0">
+              Is 2048 CupCakes the same as regular 2048?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                The core gameplay mechanics are identical to the classic 2048 number puzzle. The key difference is the theme: instead of numeric tiles, you get beautifully designed cupcake tiles in 11 delicious tiers, from a plain vanilla cupcake (2) all the way up to the legendary 2048 CupCake. The cupcake theme makes each merge feel like a tiny baking celebration!
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <div class="faq-question" role="button" aria-expanded="false" tabindex="0">
+              Does the game save my progress?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Yes! The game uses your browser's local storage to save your current game state and best score automatically. If you close the tab and return later, your game will be right where you left it. Just make sure you're using the same browser and device.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════
+         SECTION 9 · CTA BANNER
+    ═════════════════════════════════════════ -->
+    <section class="cta-section" aria-label="Call to action">
+      <div class="container">
+        <div class="cta-inner" data-anim>
+          <h2>Ready to Bake Your Way to 2048? 🧁</h2>
+          <p>Jump into the sweetest puzzle game online. Free to play, forever. No download, no sign-up — just pure cupcake-merging fun.</p>
+          <a href="#game" class="btn-white">🎮 Play 2048 CupCakes Now</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Scripts -->
+  <script src="js/header.js" defer></script>
+  <script src="js/footer.js" defer></script>
+  <script src="js/main.js"   defer></script>
+</body>
+</html>
