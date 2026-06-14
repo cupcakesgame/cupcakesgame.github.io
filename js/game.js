@@ -236,7 +236,7 @@
       this.over = false;
       this.won = false;
       this.keepPlaying = false;
-      this.hasShownWin = false; // NEW: Track if we've already shown the win overlay
+      this.hasShownWin = false; // Tracks if we've already shown the win overlay
       this.history = [];
       this.bestScore = Number(localStorage.getItem(this.storageKey)) || 0;
 
@@ -331,7 +331,7 @@
     /* ---------------- Movement ---------------- */
 
     move(direction) {
-      // FIX: Better condition - don't allow moves if game over, or if won and not continuing
+      // Better condition - don't allow moves if game over, or if won and not continuing
       if (this.over) return;
       if (this.won && !this.keepPlaying) return;
 
@@ -365,9 +365,9 @@
               this.score += merged.value;
 
               // FIX: Only trigger win when exactly reaching 2048, and only once
+              // Removed the premature "this.hasShownWin = true" from here
               if (merged.value === 2048 && !this.won && !this.hasShownWin) {
                 this.won = true;
-                this.hasShownWin = true;
               }
             } else {
               this.moveTile(tile, positions.farthest);
@@ -393,7 +393,7 @@
 
         this.actuate();
 
-        // FIX: Only show win overlay once and only when appropriate
+        // FIX: Flag is now successfully checked and set here at the execution layer
         if (this.won && !this.keepPlaying && !this.hasShownWin) {
           this.hasShownWin = true;
           this.showOverlay('win');
