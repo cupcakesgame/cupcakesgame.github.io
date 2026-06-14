@@ -30,7 +30,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; ${year} 2048 Cupcakes. All rights reserved.</p>
+        <p>&copy; ${year} 2048 Cupcakes Game.</p>
         <p>2048 Cupcakes is an independent fan-made puzzle game and is not affiliated with any official 2048 brand.</p>
       </div>
     </footer>
