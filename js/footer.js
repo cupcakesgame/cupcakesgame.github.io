@@ -2,7 +2,7 @@
 (function () {
   const year = new Date().getFullYear();
 
-  const footerHTML = `
+  const footerHTML = ` 
     <footer class="site-footer">
       <div class="site-footer-inner">
         <div class="footer-brand">
