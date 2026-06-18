@@ -13,7 +13,7 @@
 
         <div class="footer-links">
           <h4>Game</h4>
-          <a href="/#game">Play 2048 Cupcakes</a>
+          <a href="/#game">Play Cupcakes</a>
           <a href="/#how-to-play">How To Play</a>
           <a href="/#flavor-guide">Cupcake Tile Guide</a>
           <a href="/#tips">Tips &amp; Strategies</a>
@@ -30,7 +30,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; ${year} 2048 Cupcakes Game.</p>
+        <p>&copy; ${year} Cupcakes Game.</p>
       </div>
     </footer>
   `;
