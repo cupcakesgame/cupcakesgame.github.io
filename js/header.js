@@ -4,7 +4,7 @@
     <header class="site-header">
       <div class="site-header-inner">
         <a class="brand" href="/" aria-label="Cupcakes home">
-          <span class="brand-icon" aria-hidden="true">🧁</span>
+          <span class="brand-icon" aria-hidden="true">🧁</span> 
           <span class="brand-name">Cupcakes Game</span>
         </a>
 
