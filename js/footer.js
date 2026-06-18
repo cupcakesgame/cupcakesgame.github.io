@@ -8,7 +8,7 @@
         <div class="footer-brand">
           <span class="brand-icon" aria-hidden="true">🧁</span>
           <span class="brand-name">Cupcakes Game</span>
-          <p>A sweet, free twist on the classic 2048 sliding tile puzzle game. Merge cupcakes, beat your best score, and bake your way to the 2048 Royal Cupcake.</p>
+          <p>A sweet, free twist on the classic sliding tile puzzle game. Merge cupcakes, beat your best score, and bake your way to the 2048 Royal Cupcake.</p>
         </div>
 
         <div class="footer-links">
