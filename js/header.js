@@ -3,9 +3,9 @@
   const headerHTML = `
     <header class="site-header">
       <div class="site-header-inner">
-        <a class="brand" href="/" aria-label="2048 Cupcakes home">
+        <a class="brand" href="/" aria-label="Cupcakes home">
           <span class="brand-icon" aria-hidden="true">🧁</span>
-          <span class="brand-name">2048 Cupcakes</span>
+          <span class="brand-name">Cupcakes Game</span>
         </a>
 
         <nav class="site-nav" id="site-nav">
