@@ -167,7 +167,7 @@
         <h1>Cupcakes Game</h1>
         <p class="hero-sub">Slide, match, and merge sweet cupcake tiles in this delicious twist on the classic 2048 puzzle game. Combine matching flavors to bake your way up to the legendary 2048 Royal Cupcake!</p>
         <div class="hero-actions">
-          <a href="#game" class="btn btn-primary">Play Now</a>
+          <a href="/2048" class="btn btn-primary">Play Now</a>
           <a href="#how-to-play" class="btn btn-secondary">How To Play</a>
         </div>
       </div>
@@ -178,59 +178,7 @@
         <div class="hero-tile tile-16">🧁</div>
       </div>
     </div>
-  </section>  
-
-  <!-- 2. GAME SECTION -->
-  <section class="game-section" id="game">
-    <div class="game-wrap">
-
-      <div class="game-header">
-        <div class="game-title-block">
-          <h2>Play Cupcakes Game</h2>
-          <p>Reach the Royal Cupcake to win!</p>
-        </div>
-        <div class="score-board">
-          <div class="score-box">
-            <span class="score-label">Score</span>
-            <span class="score-value" id="score">0</span>
-          </div>
-          <div class="score-box">
-            <span class="score-label">Best</span>
-            <span class="score-value" id="best-score">0</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="game-controls-row">
-        <button class="btn btn-primary" id="new-game-btn">New Game</button>
-        <button class="btn btn-outline" id="undo-btn">Undo</button>
-      </div>
-
-      <div class="board-container">
-        <div class="board-grid" id="board-grid"></div>
-        <div class="board-tiles" id="board-tiles"></div>
-
-        <div class="game-overlay" id="game-overlay" hidden>
-          <div class="overlay-card">
-            <h3 id="overlay-title">You win!</h3>
-            <p id="overlay-text">You baked the 2048 Royal Cupcake!</p>
-            <button class="btn btn-primary" id="overlay-btn">Keep Playing</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="touch-controls" aria-hidden="true">
-        <button class="dpad-btn dpad-up" data-dir="up" aria-label="Move up">▲</button>
-        <div class="dpad-mid">
-          <button class="dpad-btn dpad-left" data-dir="left" aria-label="Move left">◀</button>
-          <button class="dpad-btn dpad-right" data-dir="right" aria-label="Move right">▶</button>
-        </div>
-        <button class="dpad-btn dpad-down" data-dir="down" aria-label="Move down">▼</button>
-      </div>
-
-      <p class="game-hint">Desktop: use arrow keys. Mobile: swipe the board or use the buttons above.</p>
-    </div>
-  </section>  
+  </section>    
 
   <!-- 3. HOW TO PLAY -->
   <section class="how-to-play" id="how-to-play">
