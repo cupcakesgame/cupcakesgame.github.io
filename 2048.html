@@ -8,22 +8,57 @@
     <title>2048 Cupcakes Game – Play the Sweet Sliding Puzzle</title>
     <meta name="description" content="Play 2048 Cupcakes Game, a delicious twist on the classic sliding tile puzzle. Merge cute cupcake tiles, reach the Royal Cupcake!" />
     <meta name="keywords" content="2048 cupcakes, cupcakes 2048, 2048 game, cupcake puzzle, free puzzle game" />
-    <link rel="canonical" href="https://cupcakesgame.github.io/2048" />
+    <link rel="canonical" href="https://cupcakesgame.github.io/2048.html" />
     <meta name="robots" content="index, follow" />
     <link rel="icon" type="image/png" sizes="32x32" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧁</text></svg>" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://cupcakesgame.github.io/2048" />
+    <meta property="og:url" content="https://cupcakesgame.github.io/2048.html" />
     <meta property="og:title" content="2048 Cupcakes – Play the Sweet Sliding Puzzle" />
     <meta property="og:description" content="Merge adorable cupcake tiles in this sweet twist on the classic 2048 puzzle." />
     <meta property="og:image" content="https://cupcakesgame.github.io/og-cover.png" />
-    <meta property="og:site_name" content="2048 Cupcakes Game" />    
+    <meta property="og:site_name" content="2048 Cupcakes Game" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="2048 Cupcakes – Play the Sweet Sliding Puzzle" />
+    <meta name="twitter:description" content="Merge adorable cupcake tiles in this sweet twist on the classic 2048 puzzle." />
+    <meta name="twitter:image" content="https://cupcakesgame.github.io/og-cover.png" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- JSON-LD: WebApplication + VideoGame -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "VideoGame",
+            "name": "Cupcakes Game",
+            "alternateName": "Cupcakes 2048",
+            "url": "https://cupcakesgame.github.io/2048.html",
+            "description": "2048 Cupcakes is a free online sliding tile puzzle game where players combine matching cupcake tiles.",
+            "applicationCategory": "Game",
+            "genre": "Puzzle",
+            "gamePlatform": ["Web Browser", "Desktop", "Mobile"],
+            "operatingSystem": "Any",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Cupcakes Game",
+            "url": "https://cupcakesgame.github.io/2048.html",
+            "applicationCategory": "GameApplication",
+            "operatingSystem": "Any",
+            "isAccessibleForFree": true,
+            "description": "Play 2048 Cupcakes online free. Slide & merge cupcakes to reach 2048."
+        }
+    </script>
 
     <style>
         /* ----- reset & base ----- */
@@ -42,7 +77,7 @@
             justify-content: center;
             padding: 1.5rem;
         }
-        /* ----- header / footer placeholders (mimic index) ----- */
+        /* header / footer placeholders (mimic index) */
         #header-placeholder,
         #footer-placeholder {
             width: 100%;
@@ -70,6 +105,7 @@
             padding-top: 1.2rem;
             color: #6b4f36;
         }
+
         /* ----- game section (extracted from index) ----- */
         .game-section {
             width: 100%;
@@ -168,6 +204,11 @@
         .btn-outline:hover {
             background: #ece2d8;
         }
+        .btn:disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
         .board-container {
             position: relative;
             width: 100%;
@@ -179,6 +220,8 @@
             margin-bottom: 0.5rem;
             touch-action: none;
         }
+
+        /* grid cells (background) */
         .board-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -190,84 +233,73 @@
             position: relative;
             z-index: 1;
         }
-        .cell {
+        .grid-cell {
             background: rgba(255, 245, 235, 0.4);
             border-radius: 14px;
             box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
         }
+
+        /* tiles container (absolute overlay) */
         .board-tiles {
             position: absolute;
             top: 10px;
             left: 10px;
             right: 10px;
             bottom: 10px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(4, 1fr);
-            gap: 8px;
             pointer-events: none;
             z-index: 10;
         }
+
+        /* individual tile */
         .tile {
+            position: absolute;
             border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 800;
-            font-size: 1.8rem;
             background: #fceae0;
+            transition: 0.12s ease-in-out;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            will-change: transform, left, top;
+        }
+        .tile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+            display: block;
+        }
+        .tile-fallback {
+            font-size: 1.8rem;
+            font-weight: 800;
             color: #2d1a0c;
-            transition: 0.08s ease-in;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
             font-family: 'Baloo 2', cursive;
-            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
-            line-height: 1;
-            padding: 2px;
-            word-break: keep-all;
         }
-        .tile[data-value="2"] {
-            background: #fde5d4;
+        .tile-new {
+            animation: tileAppear 0.18s ease-out;
         }
-        .tile[data-value="4"] {
-            background: #fcd2b0;
+        .tile-merged {
+            animation: tilePop 0.22s ease-out;
         }
-        .tile[data-value="8"] {
-            background: #fbba8a;
+
+        @keyframes tileAppear {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
         }
-        .tile[data-value="16"] {
-            background: #f8a36a;
+        @keyframes tilePop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
         }
-        .tile[data-value="32"] {
-            background: #f58b4a;
-        }
-        .tile[data-value="64"] {
-            background: #f2742a;
-        }
-        .tile[data-value="128"] {
-            background: #f0d06a;
-        }
-        .tile[data-value="256"] {
-            background: #edc24a;
-        }
-        .tile[data-value="512"] {
-            background: #eab42a;
-        }
-        .tile[data-value="1024"] {
-            background: #e7a60a;
-            color: #3d2b15;
-        }
-        .tile[data-value="2048"] {
-            background: #f7d44a;
-            color: #2a1b0b;
-            box-shadow: 0 0 0 3px #ffe49e;
-        }
+
         .game-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.35);
             backdrop-filter: blur(4px);
             border-radius: 28px;
             display: flex;
@@ -293,6 +325,7 @@
             color: #4f3724;
             font-weight: 600;
         }
+
         .touch-controls {
             display: flex;
             flex-direction: column;
@@ -336,6 +369,7 @@
         [hidden] {
             display: none !important;
         }
+
         @media (max-width: 480px) {
             .game-section {
                 padding: 1rem;
@@ -351,50 +385,19 @@
                 height: 52px;
                 font-size: 1.5rem;
             }
-            .tile {
+            .tile-fallback {
                 font-size: 1.4rem;
             }
         }
     </style>
-
-    <!-- JSON-LD: WebApplication + VideoGame (same as index) -->
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "VideoGame",
-            "name": "2048 Cupcakes Game",
-            "alternateName": "Cupcakes 2048",
-            "url": "https://cupcakesgame.github.io/2048",
-            "description": "2048 Cupcakes is a free online sliding tile puzzle game where players combine matching cupcake tiles.",
-            "applicationCategory": "Game",
-            "genre": "Puzzle",
-            "gamePlatform": ["Web Browser", "Desktop", "Mobile"],
-            "operatingSystem": "Any",
-            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-        }
-    </script>
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "2048 Cupcakes Game",
-            "url": "https://cupcakesgame.github.io/2048",
-            "applicationCategory": "GameApplication",
-            "operatingSystem": "Any",
-            "isAccessibleForFree": true,
-            "description": "Play 2048 Cupcakes online free. Slide & merge cupcakes to reach 2048."
-        }
-    </script>
 </head>
 <body>
 
     <!-- header placeholder (mimics index) -->
-    <div id="header-placeholder"></div>
-
-    <div<span>🧁 Cupcakes Game</span></div>
+    <div id="header-placeholder"><span>🧁 Cupcakes Game</span></div>
 
     <main>
-        <!-- 2. GAME SECTION (extracted from index) -->
+        <!-- GAME SECTION (extracted from index, uses game.js) -->
         <section class="game-section" id="game">
             <div class="game-wrap">
                 <div class="game-header">
@@ -447,378 +450,607 @@
     </main>
 
     <!-- footer placeholder -->
-<div id="footer-placeholder"></div>
+    <div id="footer-placeholder">© 2026 Cupcakes Game — sweet puzzle fun</div>
 
-<script src="/js/header.js"></script>
-<script src="/js/footer.js"></script>
+    <!-- ===== GAME.JS (full engine, as provided) ===== -->
     <script>
-        // ----- 2048 CUPCAKES GAME (full logic) -----
-
+        // game.js - 2048 Cupcakes game engine
         (function() {
+            'use strict';
+
+            /* =========================================================
+               Cupcake tile artwork mapping
+               Add your own images to the /images folder using these
+               exact file names, or update the paths below.
+               ========================================================= */
+            const CUPCAKE_IMAGES = {
+                2: 'img/2.jpg',
+                4: 'img/4.jpg',
+                8: 'img/8.jpg',
+                16: 'img/16.jpg',
+                32: 'img/32.jpg',
+                64: 'img/64.jpg',
+                128: 'img/128.jpg',
+                256: 'img/256.jpg',
+                512: 'img/512.jpg',
+                1024: 'img/1024.jpg',
+                2048: 'img/2048.jpg'
+            };
+            const SUPER_CUPCAKE_IMAGE = 'images/cupcake-super.png';
+
+            const CUPCAKE_NAMES = {
+                2: 'Vanilla Cupcake',
+                4: 'Strawberry Cupcake',
+                8: 'Chocolate Cupcake',
+                16: 'Blueberry Cupcake',
+                32: 'Red Velvet Cupcake',
+                64: 'Lemon Cupcake',
+                128: 'Mint Cupcake',
+                256: 'Caramel Cupcake',
+                512: 'Rainbow Cupcake',
+                1024: 'Golden Cupcake',
+                2048: 'Royal Cupcake'
+            };
+
+            function imageFor(value) {
+                return CUPCAKE_IMAGES[value] || SUPER_CUPCAKE_IMAGE;
+            }
+
+            function nameFor(value) {
+                return CUPCAKE_NAMES[value] || 'Super Cupcake';
+            }
+
+            /* =========================================================
+               Grid + Tile model (classic 2048 grid manager pattern)
+               ========================================================= */
+
             const SIZE = 4;
-            let grid = [];
-            let score = 0;
-            let bestScore = parseInt(localStorage.getItem('cupcakeBest') || '0');
-            let gameOver = false;
-            let winAchieved = false;
-            let keepPlaying = false;
-            let history = []; // for undo
+            let tileIdCounter = 1;
 
-            const boardTilesEl = document.getElementById('board-tiles');
-            const boardGridEl = document.getElementById('board-grid');
-            const scoreEl = document.getElementById('score');
-            const bestScoreEl = document.getElementById('best-score');
-            const overlayEl = document.getElementById('game-overlay');
-            const overlayTitle = document.getElementById('overlay-title');
-            const overlayText = document.getElementById('overlay-text');
-            const overlayBtn = document.getElementById('overlay-btn');
-
-            // ---- helpers ----
-            function createEmptyGrid() {
-                return Array.from({ length: SIZE }, () => Array(SIZE).fill(0));
+            class Tile {
+                constructor(position, value) {
+                    this.id = tileIdCounter++;
+                    this.x = position.x;
+                    this.y = position.y;
+                    this.value = value;
+                    this.previousPosition = null;
+                    this.mergedFrom = null; // tracks tiles merged together to form this one
+                }
+                savePosition() {
+                    this.previousPosition = { x: this.x, y: this.y };
+                }
+                updatePosition(position) {
+                    this.x = position.x;
+                    this.y = position.y;
+                }
             }
 
-            function initGrid() {
-                grid = createEmptyGrid();
-                addRandomTile();
-                addRandomTile();
-                gameOver = false;
-                winAchieved = false;
-                keepPlaying = false;
-                overlayEl.hidden = true;
-                history = [];
-                render();
-            }
-
-            function addRandomTile() {
-                const empty = [];
-                for (let r = 0; r < SIZE; r++) {
-                    for (let c = 0; c < SIZE; c++) {
-                        if (grid[r][c] === 0) empty.push([r, c]);
-                    }
+            class Grid {
+                constructor(size) {
+                    this.size = size;
+                    this.cells = this.empty();
                 }
-                if (empty.length === 0) return false;
-                const [r, c] = empty[Math.floor(Math.random() * empty.length)];
-                grid[r][c] = Math.random() < 0.9 ? 2 : 4;
-                return true;
-            }
-
-            function cloneGrid(g) { return g.map(row => [...row]); }
-
-            function gridsEqual(a, b) {
-                for (let r = 0; r < SIZE; r++) {
-                    for (let c = 0; c < SIZE; c++) {
-                        if (a[r][c] !== b[r][c]) return false;
-                    }
-                }
-                return true;
-            }
-
-            // ---- move logic ----
-            function slide(row) {
-                // remove zeros, merge, pad
-                let arr = row.filter(v => v !== 0);
-                let merged = [];
-                let i = 0;
-                let mergeScore = 0;
-                while (i < arr.length) {
-                    if (i + 1 < arr.length && arr[i] === arr[i + 1]) {
-                        const val = arr[i] * 2;
-                        merged.push(val);
-                        mergeScore += val;
-                        i += 2;
-                    } else {
-                        merged.push(arr[i]);
-                        i++;
-                    }
-                }
-                while (merged.length < SIZE) merged.push(0);
-                return { row: merged, score: mergeScore };
-            }
-
-            function moveLeft() {
-                let moved = false;
-                let totalScore = 0;
-                const newGrid = cloneGrid(grid);
-                for (let r = 0; r < SIZE; r++) {
-                    const result = slide(newGrid[r]);
-                    if (!gridsEqual([newGrid[r]], [result.row])) moved = true;
-                    newGrid[r] = result.row;
-                    totalScore += result.score;
-                }
-                if (moved) {
-                    history.push({ grid: cloneGrid(grid), score: score });
-                    grid = newGrid;
-                    score += totalScore;
-                    if (score > bestScore) {
-                        bestScore = score;
-                        localStorage.setItem('cupcakeBest', String(bestScore));
-                    }
-                    if (addRandomTile()) {
-                        // continue
-                    }
-                    checkGameState();
-                    render();
-                    return true;
-                }
-                return false;
-            }
-
-            function moveRight() {
-                const rotated = grid.map(row => [...row].reverse());
-                const moved = moveLeftOnGrid(rotated);
-                if (moved) {
-                    grid = rotated.map(row => [...row].reverse());
-                    render();
-                }
-                return moved;
-            }
-
-            function moveUp() {
-                const trans = grid[0].map((_, col) => grid.map(row => row[col]));
-                const moved = moveLeftOnGrid(trans);
-                if (moved) {
-                    grid = trans[0].map((_, col) => trans.map(row => row[col]));
-                    render();
-                }
-                return moved;
-            }
-
-            function moveDown() {
-                const trans = grid[0].map((_, col) => grid.map(row => row[col]).reverse());
-                const moved = moveLeftOnGrid(trans);
-                if (moved) {
-                    const reversed = trans.map(row => [...row].reverse());
-                    grid = reversed[0].map((_, col) => reversed.map(row => row[col]));
-                    render();
-                }
-                return moved;
-            }
-
-            // helper for right/up/down
-            function moveLeftOnGrid(g) {
-                let moved = false;
-                let totalScore = 0;
-                const newGrid = cloneGrid(g);
-                for (let r = 0; r < SIZE; r++) {
-                    const result = slide(newGrid[r]);
-                    if (!gridsEqual([newGrid[r]], [result.row])) moved = true;
-                    newGrid[r] = result.row;
-                    totalScore += result.score;
-                }
-                if (moved) {
-                    history.push({ grid: cloneGrid(grid), score: score });
-                    grid = newGrid;
-                    score += totalScore;
-                    if (score > bestScore) {
-                        bestScore = score;
-                        localStorage.setItem('cupcakeBest', String(bestScore));
-                    }
-                    addRandomTile();
-                    checkGameState();
-                    render();
-                    return true;
-                }
-                return false;
-            }
-
-            // ---- check win / lose ----
-            function checkGameState() {
-                // win: 2048 tile exists
-                let has2048 = false;
-                for (let r = 0; r < SIZE; r++) {
-                    for (let c = 0; c < SIZE; c++) {
-                        if (grid[r][c] === 2048) has2048 = true;
-                    }
-                }
-                if (has2048 && !winAchieved && !keepPlaying) {
-                    winAchieved = true;
-                    overlayTitle.textContent = '🎉 You Win!';
-                    overlayText.textContent = 'You baked the 2048 Royal Cupcake!';
-                    overlayBtn.textContent = 'Keep Playing';
-                    overlayEl.hidden = false;
-                    overlayBtn.onclick = function() {
-                        keepPlaying = true;
-                        overlayEl.hidden = true;
-                    };
-                    return;
-                }
-                // check lose: no empty cells and no merge possible
-                let empty = false;
-                for (let r = 0; r < SIZE; r++) {
-                    for (let c = 0; c < SIZE; c++) {
-                        if (grid[r][c] === 0) empty = true;
-                    }
-                }
-                if (!empty) {
-                    let canMerge = false;
-                    for (let r = 0; r < SIZE; r++) {
-                        for (let c = 0; c < SIZE; c++) {
-                            const val = grid[r][c];
-                            if (c < SIZE - 1 && grid[r][c + 1] === val) canMerge = true;
-                            if (r < SIZE - 1 && grid[r + 1][c] === val) canMerge = true;
+                empty() {
+                    const cells = [];
+                    for (let x = 0; x < this.size; x++) {
+                        const row = [];
+                        for (let y = 0; y < this.size; y++) {
+                            row.push(null);
                         }
+                        cells.push(row);
                     }
-                    if (!canMerge) {
-                        gameOver = true;
-                        overlayTitle.textContent = '😕 Game Over';
-                        overlayText.textContent = 'No more moves available. Try again!';
-                        overlayBtn.textContent = 'New Game';
-                        overlayEl.hidden = false;
-                        overlayBtn.onclick = function() {
-                            initGrid();
-                        };
+                    return cells;
+                }
+                randomAvailableCell() {
+                    const cells = this.availableCells();
+                    if (cells.length) {
+                        return cells[Math.floor(Math.random() * cells.length)];
                     }
+                    return null;
                 }
-            }
-
-            // ---- render ----
-            function render() {
-                // grid cells (static)
-                boardGridEl.innerHTML = '';
-                for (let i = 0; i < SIZE * SIZE; i++) {
-                    const cell = document.createElement('div');
-                    cell.className = 'cell';
-                    boardGridEl.appendChild(cell);
-                }
-                // tiles
-                boardTilesEl.innerHTML = '';
-                for (let r = 0; r < SIZE; r++) {
-                    for (let c = 0; c < SIZE; c++) {
-                        const val = grid[r][c];
-                        const tile = document.createElement('div');
-                        tile.className = 'tile';
-                        tile.setAttribute('data-value', val || '0');
-                        if (val === 0) {
-                            tile.textContent = '';
-                            tile.style.background = 'transparent';
-                            tile.style.boxShadow = 'none';
-                        } else {
-                            // cupcake emoji based on value (cute)
-                            const emojis = {
-                                2: '🧁',
-                                4: '🧁',
-                                8: '🧁',
-                                16: '🧁',
-                                32: '🧁',
-                                64: '🧁',
-                                128: '🧁',
-                                256: '🧁',
-                                512: '🧁',
-                                1024: '🧁',
-                                2048: '👑🧁'
-                            };
-                            const label = val >= 2048 ? '👑' : '🧁';
-                            tile.textContent = val >= 2048 ? '👑' : '🧁';
-                            // tile.style.fontSize = val >= 2048 ? '2.4rem' : '2rem';
-                        }
-                        boardTilesEl.appendChild(tile);
-                    }
-                }
-                scoreEl.textContent = score;
-                bestScoreEl.textContent = bestScore;
-            }
-
-            // ---- undo ----
-            function undoMove() {
-                if (history.length === 0 || gameOver) return;
-                const prev = history.pop();
-                grid = prev.grid;
-                score = prev.score;
-                if (winAchieved && !keepPlaying) {
-                    // if we undo after win, reset win flag
-                    winAchieved = false;
-                    overlayEl.hidden = true;
-                }
-                gameOver = false;
-                overlayEl.hidden = true;
-                render();
-            }
-
-            // ---- keyboard & swipe ----
-            function handleKey(e) {
-                const key = e.key;
-                const arrowMap = {
-                    'ArrowUp': moveUp,
-                    'ArrowDown': moveDown,
-                    'ArrowLeft': moveLeft,
-                    'ArrowRight': moveRight
-                };
-                if (arrowMap[key]) {
-                    e.preventDefault();
-                    if (!gameOver && !overlayEl.hidden && winAchieved && !keepPlaying) {
-                        // if win overlay shown, block moves
-                        return;
-                    }
-                    if (gameOver) return;
-                    arrowMap[key]();
-                }
-            }
-
-            // ---- touch swipe ----
-            let startX = 0,
-                startY = 0;
-            function handleTouchStart(e) {
-                const touch = e.touches[0];
-                startX = touch.clientX;
-                startY = touch.clientY;
-            }
-
-            function handleTouchEnd(e) {
-                if (startX === 0 && startY === 0) return;
-                if (gameOver) return;
-                if (!overlayEl.hidden && winAchieved && !keepPlaying) return;
-                const touch = e.changedTouches[0];
-                const dx = touch.clientX - startX;
-                const dy = touch.clientY - startY;
-                const absDx = Math.abs(dx);
-                const absDy = Math.abs(dy);
-                if (Math.max(absDx, absDy) < 30) return;
-                if (absDx > absDy) {
-                    dx > 0 ? moveRight() : moveLeft();
-                } else {
-                    dy > 0 ? moveDown() : moveUp();
-                }
-                startX = 0;
-                startY = 0;
-            }
-
-            // ---- init ----
-            function init() {
-                bestScoreEl.textContent = bestScore;
-                initGrid();
-                // event listeners
-                window.addEventListener('keydown', handleKey);
-                const container = document.getElementById('board-container');
-                container.addEventListener('touchstart', handleTouchStart, { passive: true });
-                container.addEventListener('touchend', handleTouchEnd, { passive: true });
-
-                document.getElementById('new-game-btn').addEventListener('click', function() {
-                    initGrid();
-                    overlayEl.hidden = true;
-                    winAchieved = false;
-                    keepPlaying = false;
-                    gameOver = false;
-                });
-                document.getElementById('undo-btn').addEventListener('click', undoMove);
-
-                // dpad buttons
-                document.querySelectorAll('.dpad-btn').forEach(btn => {
-                    btn.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        const dir = this.getAttribute('data-dir');
-                        if (gameOver) return;
-                        if (!overlayEl.hidden && winAchieved && !keepPlaying) return;
-                        if (dir === 'up') moveUp();
-                        else if (dir === 'down') moveDown();
-                        else if (dir === 'left') moveLeft();
-                        else if (dir === 'right') moveRight();
+                availableCells() {
+                    const cells = [];
+                    this.eachCell((x, y, tile) => {
+                        if (!tile) cells.push({ x, y });
                     });
-                });
-                // overlay button is set dynamically
+                    return cells;
+                }
+                eachCell(callback) {
+                    for (let x = 0; x < this.size; x++) {
+                        for (let y = 0; y < this.size; y++) {
+                            callback(x, y, this.cells[x][y]);
+                        }
+                    }
+                }
+                cellsAvailable() {
+                    return !!this.availableCells().length;
+                }
+                cellAvailable(cell) {
+                    return !this.cellOccupied(cell);
+                }
+                cellOccupied(cell) {
+                    return !!this.cellContent(cell);
+                }
+                cellContent(cell) {
+                    if (this.withinBounds(cell)) {
+                        return this.cells[cell.x][cell.y];
+                    }
+                    return null;
+                }
+                insertTile(tile) {
+                    this.cells[tile.x][tile.y] = tile;
+                }
+                removeTile(tile) {
+                    this.cells[tile.x][tile.y] = null;
+                }
+                withinBounds(position) {
+                    return position.x >= 0 && position.x < this.size &&
+                        position.y >= 0 && position.y < this.size;
+                }
             }
 
-            init();
+            /* =========================================================
+               Game manager
+               ========================================================= */
+
+            class GameManager {
+                constructor() {
+                    this.size = SIZE;
+                    this.storageKey = 'cupcakes2048-best';
+                    this.history = [];
+                    this.maxHistory = 12;
+                    this.startTiles = 2;
+
+                    this.boardGrid = document.getElementById('board-grid');
+                    this.boardTiles = document.getElementById('board-tiles');
+                    this.scoreEl = document.getElementById('score');
+                    this.bestEl = document.getElementById('best-score');
+                    this.overlayEl = document.getElementById('game-overlay');
+                    this.overlayTitle = document.getElementById('overlay-title');
+                    this.overlayText = document.getElementById('overlay-text');
+                    this.overlayBtn = document.getElementById('overlay-btn');
+                    this.newGameBtn = document.getElementById('new-game-btn');
+                    this.undoBtn = document.getElementById('undo-btn');
+
+                    this.buildGridCells();
+                    this.bindEvents();
+                    this.setup();
+                }
+
+                buildGridCells() {
+                    this.boardGrid.innerHTML = '';
+                    for (let i = 0; i < this.size * this.size; i++) {
+                        const cell = document.createElement('div');
+                        cell.className = 'grid-cell';
+                        this.boardGrid.appendChild(cell);
+                    }
+                }
+
+                bindEvents() {
+                    // Keyboard
+                    document.addEventListener('keydown', (e) => {
+                        const map = {
+                            ArrowUp: 0,
+                            ArrowRight: 1,
+                            ArrowDown: 2,
+                            ArrowLeft: 3,
+                            w: 0,
+                            d: 1,
+                            s: 2,
+                            a: 3,
+                            W: 0,
+                            D: 1,
+                            S: 2,
+                            A: 3
+                        };
+                        if (map.hasOwnProperty(e.key)) {
+                            e.preventDefault();
+                            this.move(map[e.key]);
+                        }
+                    });
+
+                    // Touch swipe
+                    let touchStartX = 0;
+                    let touchStartY = 0;
+                    const boardContainer = document.querySelector('.board-container');
+
+                    boardContainer.addEventListener('touchstart', (e) => {
+                        if (e.touches.length !== 1) return;
+                        touchStartX = e.touches[0].clientX;
+                        touchStartY = e.touches[0].clientY;
+                    }, { passive: true });
+
+                    boardContainer.addEventListener('touchend', (e) => {
+                        if (!e.changedTouches.length) return;
+                        const dx = e.changedTouches[0].clientX - touchStartX;
+                        const dy = e.changedTouches[0].clientY - touchStartY;
+                        const absX = Math.abs(dx);
+                        const absY = Math.abs(dy);
+                        const threshold = 24;
+
+                        if (Math.max(absX, absY) < threshold) return;
+
+                        if (absX > absY) {
+                            this.move(dx > 0 ? 1 : 3); // right : left
+                        } else {
+                            this.move(dy > 0 ? 2 : 0); // down : up
+                        }
+                    }, { passive: true });
+
+                    // On-screen d-pad
+                    document.querySelectorAll('.dpad-btn').forEach((btn) => {
+                        btn.addEventListener('click', () => {
+                            const dirMap = { up: 0, right: 1, down: 2, left: 3 };
+                            this.move(dirMap[btn.dataset.dir]);
+                        });
+                    });
+
+                    // New game / undo / overlay
+                    this.newGameBtn.addEventListener('click', () => this.restart());
+                    this.overlayBtn.addEventListener('click', () => this.handleOverlayClick());
+                    this.undoBtn.addEventListener('click', () => this.undo());
+
+                    // Resize - keep tile positions correct on orientation change
+                    window.addEventListener('resize', () => this.actuate());
+                }
+
+                /* ---------------- Setup / lifecycle ---------------- */
+
+                setup() {
+                    this.grid = new Grid(this.size);
+                    this.score = 0;
+                    this.over = false;
+                    this.won = false;
+                    this.keepPlaying = false;
+                    this.hasShownWin = false; // Tracks if we've already shown the win overlay
+                    this.history = [];
+                    this.bestScore = Number(localStorage.getItem(this.storageKey)) || 0;
+
+                    this.addStartTiles();
+                    this.actuate();
+                    this.hideOverlay();
+                    this.updateUndoState();
+                }
+
+                restart() {
+                    this.setup();
+                }
+
+                handleOverlayClick() {
+                    if (this.won && !this.keepPlaying) {
+                        // This is the "Keep Playing" click after winning
+                        this.keepPlaying = true;
+                        this.won = false; // Reset won state so moves work again
+                        this.hideOverlay();
+                    } else if (this.over) {
+                        // This is the "Try Again" click after game over
+                        this.restart();
+                    } else {
+                        // Default fallback
+                        this.continueGame();
+                    }
+                }
+
+                continueGame() {
+                    this.keepPlaying = true;
+                    this.won = false;
+                    this.hideOverlay();
+                }
+
+                addStartTiles() {
+                    for (let i = 0; i < this.startTiles; i++) {
+                        this.addRandomTile();
+                    }
+                }
+
+                addRandomTile() {
+                    if (this.grid.cellsAvailable()) {
+                        const value = Math.random() < 0.9 ? 2 : 4;
+                        const tile = new Tile(this.grid.randomAvailableCell(), value);
+                        this.grid.insertTile(tile);
+                    }
+                }
+
+                /* ---------------- Serialization for undo ---------------- */
+
+                serialize() {
+                    const cells = [];
+                    this.grid.eachCell((x, y, tile) => {
+                        cells.push(tile ? { x, y, value: tile.value } : null);
+                    });
+                    return { cells, score: this.score, won: this.won, over: this.over, keepPlaying: this
+                        .keepPlaying };
+                }
+
+                pushHistory() {
+                    this.history.push(this.serialize());
+                    if (this.history.length > this.maxHistory) {
+                        this.history.shift();
+                    }
+                    this.updateUndoState();
+                }
+
+                undo() {
+                    if (!this.history.length) return;
+                    const state = this.history.pop();
+
+                    this.grid = new Grid(this.size);
+                    state.cells.forEach((cell) => {
+                        if (cell) {
+                            const tile = new Tile({ x: cell.x, y: cell.y }, cell.value);
+                            this.grid.insertTile(tile);
+                        }
+                    });
+                    this.score = state.score;
+                    this.won = state.won || false;
+                    this.over = state.over || false;
+                    this.keepPlaying = state.keepPlaying || false;
+                    this.hideOverlay();
+                    this.actuate();
+                    this.updateUndoState();
+                }
+
+                updateUndoState() {
+                    this.undoBtn.disabled = this.history.length === 0;
+                    this.undoBtn.style.opacity = this.history.length === 0 ? '0.5' : '1';
+                }
+
+                /* ---------------- Movement ---------------- */
+
+                move(direction) {
+                    // Better condition - don't allow moves if game over, or if won and not continuing
+                    if (this.over) return;
+                    if (this.won && !this.keepPlaying) return;
+
+                    const vector = this.getVector(direction);
+                    const traversals = this.buildTraversals(vector);
+                    let moved = false;
+
+                    // Save previous positions, clear merge info
+                    this.prepareTiles();
+
+                    const previousState = this.serialize();
+
+                    traversals.x.forEach((x) => {
+                        traversals.y.forEach((y) => {
+                            const cell = { x, y };
+                            const tile = this.grid.cellContent(cell);
+
+                            if (tile) {
+                                const positions = this.findFarthestPosition(cell, vector);
+                                const next = this.grid.cellContent(positions.next);
+
+                                if (next && next.value === tile.value && !next.mergedFrom) {
+                                    const merged = new Tile(positions.next, tile.value * 2);
+                                    merged.mergedFrom = [tile, next];
+
+                                    this.grid.insertTile(merged);
+                                    this.grid.removeTile(tile);
+
+                                    tile.updatePosition(positions.next);
+
+                                    this.score += merged.value;
+
+                                    // FIX: Only trigger win when exactly reaching 2048, and only once
+                                    if (merged.value === 2048 && !this.won && !this.hasShownWin) {
+                                        this.won = true;
+                                    }
+                                } else {
+                                    this.moveTile(tile, positions.farthest);
+                                }
+
+                                if (!this.positionsEqual(cell, tile)) {
+                                    moved = true;
+                                }
+                            }
+                        });
+                    });
+
+                    if (moved) {
+                        this.history.push(previousState);
+                        if (this.history.length > this.maxHistory) this.history.shift();
+                        this.updateUndoState();
+
+                        this.addRandomTile();
+
+                        if (!this.movesAvailable()) {
+                            this.over = true;
+                        }
+
+                        this.actuate();
+
+                        if (this.won && !this.keepPlaying && !this.hasShownWin) {
+                            this.hasShownWin = true;
+                            this.showOverlay('win');
+                        } else if (this.over) {
+                            this.showOverlay('over');
+                        }
+                    }
+                }
+
+                getVector(direction) {
+                    const map = {
+                        0: { x: 0, y: -1 }, // up
+                        1: { x: 1, y: 0 }, // right
+                        2: { x: 0, y: 1 }, // down
+                        3: { x: -1, y: 0 } // left
+                    };
+                    return map[direction];
+                }
+
+                buildTraversals(vector) {
+                    const traversals = { x: [], y: [] };
+                    for (let pos = 0; pos < this.size; pos++) {
+                        traversals.x.push(pos);
+                        traversals.y.push(pos);
+                    }
+                    if (vector.x === 1) traversals.x = traversals.x.reverse();
+                    if (vector.y === 1) traversals.y = traversals.y.reverse();
+                    return traversals;
+                }
+
+                findFarthestPosition(cell, vector) {
+                    let previous;
+                    let next = cell;
+                    do {
+                        previous = next;
+                        next = { x: previous.x + vector.x, y: previous.y + vector.y };
+                    } while (this.grid.withinBounds(next) && this.grid.cellAvailable(next));
+
+                    return { farthest: previous, next };
+                }
+
+                moveTile(tile, cell) {
+                    this.grid.cells[tile.x][tile.y] = null;
+                    this.grid.cells[cell.x][cell.y] = tile;
+                    tile.updatePosition(cell);
+                }
+
+                prepareTiles() {
+                    this.grid.eachCell((x, y, tile) => {
+                        if (tile) {
+                            tile.mergedFrom = null;
+                            tile.savePosition();
+                        }
+                    });
+                }
+
+                positionsEqual(first, second) {
+                    return first.x === second.x && first.y === second.y;
+                }
+
+                movesAvailable() {
+                    return this.grid.cellsAvailable() || this.tileMatchesAvailable();
+                }
+
+                tileMatchesAvailable() {
+                    let matches = false;
+                    for (let x = 0; x < this.size && !matches; x++) {
+                        for (let y = 0; y < this.size && !matches; y++) {
+                            const tile = this.grid.cellContent({ x, y });
+                            if (tile) {
+                                for (let d = 0; d < 4; d++) {
+                                    const vector = this.getVector(d);
+                                    const cell = { x: x + vector.x, y: y + vector.y };
+                                    const other = this.grid.cellContent(cell);
+                                    if (other && other.value === tile.value) {
+                                        matches = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    return matches;
+                }
+
+                /* ---------------- Rendering ---------------- */
+
+                actuate() {
+                    if (this.score > this.bestScore) {
+                        this.bestScore = this.score;
+                        localStorage.setItem(this.storageKey, String(this.bestScore));
+                    }
+
+                    this.scoreEl.textContent = this.score;
+                    this.bestEl.textContent = this.bestScore;
+
+                    this.renderTiles();
+                }
+
+                getCellMetrics() {
+                    const rect = this.boardTiles.getBoundingClientRect();
+                    const gapRatio = 0.035; // matches board-grid CSS gap of 3.5%
+                    const gap = rect.width * gapRatio;
+                    const cellSize = (rect.width - gap * (this.size - 1)) / this.size;
+                    return { cellSize, gap };
+                }
+
+                renderTiles() {
+                    this.boardTiles.innerHTML = '';
+                    const { cellSize, gap } = this.getCellMetrics();
+
+                    this.grid.eachCell((x, y, tile) => {
+                        if (!tile) return;
+                        this.renderTile(tile, cellSize, gap);
+
+                        if (tile.mergedFrom) {
+                            tile.mergedFrom.forEach((merged) => {
+                                // render the contributing tile at its previous position briefly
+                                // (visual continuity handled by the new merged tile's pop animation)
+                            });
+                        }
+                    });
+                }
+
+                renderTile(tile, cellSize, gap) {
+                    const value = tile.value;
+                    const el = document.createElement('div');
+                    el.className = 'tile tile-' + (value <= 2048 ? value : 'super');
+
+                    const left = tile.x * (cellSize + gap);
+                    const top = tile.y * (cellSize + gap);
+                    el.style.width = cellSize + 'px';
+                    el.style.height = cellSize + 'px';
+                    el.style.left = left + 'px';
+                    el.style.top = top + 'px';
+
+                    if (!tile.previousPosition && !tile.mergedFrom) {
+                        el.classList.add('tile-new');
+                    }
+                    if (tile.mergedFrom) {
+                        el.classList.add('tile-merged');
+                    }
+
+                    const img = document.createElement('img');
+                    img.src = imageFor(value);
+                    img.alt = nameFor(value) + ' (' + value + ')';
+                    img.loading = 'lazy';
+                    img.onerror = function() {
+                        this.onerror = null;
+                        this.style.display = 'none';
+                        const fallback = document.createElement('div');
+                        fallback.className = 'tile-fallback';
+                        fallback.textContent = value;
+                        el.appendChild(fallback);
+                    };
+
+                    el.appendChild(img);
+                    this.boardTiles.appendChild(el);
+                }
+
+                /* ---------------- Overlay ---------------- */
+
+                showOverlay(type) {
+                    if (type === 'win') {
+                        this.overlayTitle.textContent = 'You Win!';
+                        this.overlayText.textContent = 'You baked the legendary 2048 Royal Cupcake!';
+                        this.overlayBtn.textContent = 'Keep Playing';
+                        this.overlayBtn.hidden = false;
+                        this.overlayEl.hidden = false;
+                    } else if (type === 'over') {
+                        this.overlayTitle.textContent = 'Game Over';
+                        this.overlayText.textContent = 'No more moves left. Try again!';
+                        this.overlayBtn.textContent = 'Try Again';
+                        this.overlayBtn.hidden = false;
+                        this.overlayEl.hidden = false;
+                    }
+                }
+
+                hideOverlay() {
+                    this.overlayEl.hidden = true;
+                }
+            }
+
+            /* =========================================================
+               Init
+               ========================================================= */
+
+            document.addEventListener('DOMContentLoaded', () => {
+                const game = new GameManager();
+                // Re-render once layout settles (fonts/images affecting board size)
+                window.requestAnimationFrame(() => game.actuate());
+                setTimeout(() => game.actuate(), 200);
+            });
         })();
     </script>
 </body>
